@@ -1,0 +1,34 @@
+snyk-broker:
+    hostname: broker
+    image: snyk/broker:github-enterprise
+    restart: always
+    ports:
+      - "8000:8000"
+    networks:
+      - mySnykBrokerNetwork
+    environment:
+    - BROKER_TOKEN=secret-broker-token
+    - GITHUB_TOKEN=secret-github-token
+    - GITHUB=your.ghe.domain.com 
+    - GITHUB_API=your.ghe.domain.com/api/v3 
+    - GITHUB_GRAPHQL=your.ghe.domain.com/api
+    - BROKER_CLIENT_URL=http://my.broker.client:8000
+    - HTTPS_CERT=/private/broker.crt
+    - HTTPS_KEY=/private/broker.key
+    - PORT=8000
+    - GIT_CLIENT_URL=http://code-agent:3000
+    - ACCEPT=/private/accept.json
+    volumes:
+      - /local/path/to/private:/private
+
+  snyk-agent:
+    hostname: code-agent
+    image: snyk/code-agent
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - snyk
+    environment:
+    - SNYK_TOKEN=snyk-api-token
+    - PORT=3000
