@@ -28,7 +28,7 @@ snyk-broker:
     ports:
       - "3000:3000"
     networks:
-      - snyk
+      - mySnykBrokerNetwork
     environment:
     - SNYK_TOKEN=snyk-api-token
     - PORT=3000
