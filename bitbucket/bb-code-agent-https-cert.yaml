@@ -1,6 +1,6 @@
 snyk-broker:
     hostname: broker
-    image: snyk/broker:github-enterprise
+    image: snyk/broker:bitbucket-server
     restart: always
     ports:
       - "8000:8000"
@@ -8,10 +8,10 @@ snyk-broker:
       - mySnykBrokerNetwork
     environment:
     - BROKER_TOKEN=secret-broker-token
-    - GITHUB_TOKEN=secret-github-token
-    - GITHUB=your.ghe.domain.com 
-    - GITHUB_API=your.ghe.domain.com/api/v3 
-    - GITHUB_GRAPHQL=your.ghe.domain.com/api
+    - BITBUCKET_USERNAME=username
+    - BITBUCKET_PASSWORD=password
+    - BITBUCKET=your.bitbucket-server.domain.com
+    - BITBUCKET_API=your.bitbucket-server.domain.com/rest/api/1.0
     - BROKER_CLIENT_URL=http://my.broker.client:8000
     - HTTPS_CERT=/private/broker.crt
     - HTTPS_KEY=/private/broker.key
