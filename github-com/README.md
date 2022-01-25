@@ -1,0 +1,2 @@
+# GitHub
+Once you have selected a file according to your requirements, replace the variables with your tokens and rename to `docker-compose.yaml` to then run `docker-compose -up` and get the broker up and running

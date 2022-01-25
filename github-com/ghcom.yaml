@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  snyk-broker:
+    hostname: broker
+    image: snyk/broker:github-com
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+    - BROKER_TOKEN=secret-broker-token
+    - GITHUB_TOKEN=secret-github-token
+    - BROKER_CLIENT_URL=http://my.broker.client:8000
+    - CA_CERT=/private/ca.cert.pem
+    - PORT=8000
+    - ACCEPT=/private/accept.json
+    volumes:
+      - /local/path/to/private:/private

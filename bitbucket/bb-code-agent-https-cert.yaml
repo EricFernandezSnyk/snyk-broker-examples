@@ -1,11 +1,11 @@
-snyk-broker:
+version: "3.9"
+services:
+  snyk-broker:
     hostname: broker
     image: snyk/broker:bitbucket-server
     restart: always
     ports:
       - "8000:8000"
-    networks:
-      - mySnykBrokerNetwork
     environment:
     - BROKER_TOKEN=secret-broker-token
     - BITBUCKET_USERNAME=username
@@ -27,8 +27,6 @@ snyk-broker:
     restart: always
     ports:
       - "3000:3000"
-    networks:
-      - mySnykBrokerNetwork
     environment:
     - SNYK_TOKEN=snyk-api-token
     - PORT=3000
