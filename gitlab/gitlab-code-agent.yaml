@@ -19,7 +19,6 @@ services:
     # Code agent config (see https://docs.snyk.io/features/snyk-broker/snyk-broker-code-agent#extend-broker-setup for details)
     - GIT_CLIENT_URL=http://code-agent:3000
     - ACCEPT=/private/accept.json
-    - NODE_TLS_REJECT_UNATHORIZED=0
     volumes:
       - /local/path/to/private:/private
 
