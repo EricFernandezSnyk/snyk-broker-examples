@@ -1,0 +1,34 @@
+# Snyk Broker configuration including code agent
+# For more details, refer to https://docs.snyk.io/features/snyk-broker
+
+version: "3.9"
+services:
+  snyk-broker:
+    hostname: broker
+    image: snyk/broker:gitlab
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+    # Environment config detailed at https://github.com/snyk/broker#gitlab
+    - BROKER_TOKEN=secret-broker-token
+    - GITLAB_TOKEN=secret-gitlab-token
+    - GITLAB=your.gitlab.domain.com
+    - BROKER_CLIENT_URL=http://my.broker.client:8000
+    - PORT=8000
+    # Code agent config (see https://docs.snyk.io/features/snyk-broker/snyk-broker-code-agent#extend-broker-setup for details)
+    - GIT_CLIENT_URL=http://code-agent:3000
+    - ACCEPT=/private/accept.json
+    - NODE_TLS_REJECT_UNATHORIZED=0
+    volumes:
+      - /local/path/to/private:/private
+
+  snyk-agent:
+    hostname: code-agent
+    image: snyk/code-agent
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+    - SNYK_TOKEN=snyk-api-token
+    - PORT=3000
